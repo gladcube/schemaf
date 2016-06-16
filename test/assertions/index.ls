@@ -55,15 +55,18 @@ module.exports = new class SchemafAssertion
       ]
   getters:
     (getters)->
-      shema_human =
+      schema_human =
           name           : _string
           age            : _number
           birthday       : _date
           is_married     : _boolean
           favorite_foods : _array
-      shema_human
-      |> getters >> keys
-      |> deep-equal _, [ 'name', 'age', 'birthday', 'is_married', 'favorite_foods' ]
+      impl_human =
+          name           : \foobar
+          age            : 27
+      {name, age} = getters schema_human
+      equal (name impl_human), \foobar
+      equal (age impl_human), 27
   string:
     (string)->
       equal typeof string!, \string

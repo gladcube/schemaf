@@ -47,14 +47,17 @@ Generate getters from schema.
 
 ```livescript
 # define a schema
-shema_human =
-    name           : string
-    age            : number
-    birthday       : date
-    is_married     : boolean
-    favorite_foods : array
-
+    shema_human =
+        name           : string
+        age            : number
 # generate getters from the schema
-    shema_human |> getters
+    {name, age} = getters schema_human
+    
+    impl_human =
+        name           : \foobar
+        age            : 27
+    impl_name = name impl_human #=> "foobar"
+    impl_age = age impl_human #=> 27
+
 
 ```
