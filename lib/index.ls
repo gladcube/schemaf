@@ -16,6 +16,7 @@ module.exports =
       (tail >> apply $)
     ]
     |> pairs-to-obj
+  # Schema -> {Key:Getter}
   getters:
     keys
     >> (map (withr get))

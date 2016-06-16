@@ -41,3 +41,20 @@ applied_human = impl_human |> apply shema_human
 #  is_married: true,
 #  favorite_foods: [ 'egg', 'fish' ] }
 ```
+
+#### getters
+Generate getters from schema.
+
+```livescript
+# define a schema
+shema_human =
+    name           : string
+    age            : number
+    birthday       : date
+    is_married     : boolean
+    favorite_foods : array
+
+# generate getters from the schema
+    shema_human |> getters
+
+```

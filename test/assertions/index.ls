@@ -53,23 +53,17 @@ module.exports = new class SchemafAssertion
         (get \is_flyable) >> (equal _, undefined)
         (get \mongo_id) >> (not-equal _, false)
       ]
-  #getters:
-    #(getters)->
-    #  shema_human =
-    #      name           : _string
-    #      age            : _number
-    #      birthday       : _date
-    #      is_married     : _boolean
-    #      favorite_foods : _array
-    #  impl_human =
-    #      name           : "name"
-    #      age            : "123"
-    #      birthday       : 19291201
-    #      is_married     : "yes"
-    #      favorite_foods : ["foods", 22]
-    #  impl_human
-    #  |> _apply shema_human
-    #  |> getters
+  getters:
+    (getters)->
+      shema_human =
+          name           : _string
+          age            : _number
+          birthday       : _date
+          is_married     : _boolean
+          favorite_foods : _array
+      shema_human
+      |> getters >> keys
+      |> deep-equal _, [ 'name', 'age', 'birthday', 'is_married', 'favorite_foods' ]
   string:
     (string)->
       equal typeof string!, \string
