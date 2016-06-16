@@ -1,11 +1,20 @@
 ## Usage
 
 #### apply
-Apply the "schema" (defined object keys and value types) to the any other object.
-When the schema is applied, the object's keys that don't exists in the schema are deleted, and value types are casted to defined types.
+Apply the "schema" (the object that has keys and "Caster" objects as value) to the any other object.
+When the schema is applied, the object's keys that don't exists in the schema will be deleted, and value's type will be casted to the type that defined with "Caster".
+This will let the object values valid on MongoDB.
 
+#####Casters
+* string
+* number
+* date
+* boolean
+* array
+* mongo_object_id
 
 ```livescript
+
 # define a schema
 shema_human =
     name           : string
@@ -13,6 +22,7 @@ shema_human =
     birthday       : date
     is_married     : boolean
     favorite_foods : array
+    obj_id         : mongo_object_id
 
 # apply the schema
 impl_human =
@@ -22,7 +32,7 @@ impl_human =
     is_married     : "ok"
     favorite_foods : ["egg", "fish"]
     is_flyable     : "maybe"
-
+    obj_id         : mongo_object_id
 applied_human = impl_human |> apply shema_human
 #applied_human=>
 #{ name: 'test',

@@ -1,4 +1,4 @@
-{withr, may, $$, $, get, except, new_, lazy, try_, return_} = require \glad-functions
+{withr, may, $$, $, get, except, new_, lazy, try_, return_, Obj: {let_}} = require \glad-functions
 {ObjectID} = require \mongodb
 
 module.exports =
@@ -23,10 +23,9 @@ module.exports =
   # Casters
   string: String
   number: Number
-  array: except (?), []
+  array: except (let_ Array, \isArray ,_ ), return_ []
   boolean: Boolean
   date: new_ Date, _
   mongo_object_id:
     (lazy ObjectID, _)
     >> (try_ _, return_ "")
-
