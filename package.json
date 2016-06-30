@@ -1,6 +1,6 @@
 {
   "name": "schemaf",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "glad-functions": "0.0.18",
+    "glad-functions": "0.0.23",
     "livescript": "^1.5.0",
     "mongodb": "^2.1.18",
     "prelude-ls": "^1.1.2"

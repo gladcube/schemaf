@@ -13,7 +13,7 @@ module.exports =
     |> map concat # [ [k, caster, v], ...]
     |> map $$ [
       at 0
-      (tail >> apply $)
+      (tail >> ($_at 0, may) >> apply $)
     ]
     |> pairs-to-obj
   getters:
@@ -21,7 +21,7 @@ module.exports =
     >> (map (withr get))
     >> pairs-to-obj
   # Casters
-  string: String
+  string: (or "") >> String
   number: Number
   array: except (?), []
   boolean: Boolean
