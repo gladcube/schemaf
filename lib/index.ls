@@ -1,19 +1,19 @@
-{withr, may, $$, $, get, except, new_, lazy, try_, return_} = require \glad-functions
+{$_at, withr, may, $$, $, get, except, new_, lazy, try_, return_} = require \glad-functions
 {ObjectID} = require \mongodb
 
 module.exports =
   apply: (schema, o)-->
-    schema
+    o
     |> obj-to-pairs
     |> map withr (
       ((is) `over` (at 0))
-      >> (find _, (o |> obj-to-pairs))
+      >> (find _, (schema |> obj-to-pairs))
       >> (may tail)
     )
-    |> map concat # [ [k, caster, v], ...]
+    |> map concat # [ [k, v, caster], ...]
     |> map $$ [
       at 0
-      (tail >> ($_at 0, may) >> apply $)
+      (tail >> ($_at 1, may) >> apply (|>))
     ]
     |> pairs-to-obj
   getters:
