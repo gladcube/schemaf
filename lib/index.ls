@@ -11,6 +11,7 @@ module.exports =
       >> (may tail)
     )
     |> map concat # [ [k, v, caster], ...]
+    |> filter (at 2) >> (?)
     |> map $$ [
       at 0
       (tail >> ($_at 1, may) >> apply (|>))
