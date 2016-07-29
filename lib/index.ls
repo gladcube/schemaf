@@ -24,7 +24,8 @@ module.exports =
   # Casters
   string: (or "") >> String
   number: Number
-  array: except (?), []
+  array: (caster, xs)-->
+    (xs ? []) |> map caster
   boolean: Boolean
   date: new_ Date, _
   mongo_object_id:
