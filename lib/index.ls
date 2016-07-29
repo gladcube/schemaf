@@ -1,8 +1,8 @@
-{$_at, withr, may, $$, $, get, except, new_, lazy, try_, return_} = require \glad-functions
+{args, need, $_at, withr, may, $$, $, get, except, new_, lazy, try_, return_} = require \glad-functions
 {ObjectID} = require \mongodb
 
 module.exports =
-  apply: (schema, o)-->
+  apply: _apply = (schema, o)-->
     o
     |> obj-to-pairs
     |> map withr (
@@ -24,8 +24,9 @@ module.exports =
   # Casters
   string: (or "") >> String
   number: Number
-  array: (caster, xs)-->
-    (xs ? []) |> map caster
+  array: need 2,
+    args >> ($_at 1, except (?), return_ []) >> apply map
+  object: _apply
   boolean: Boolean
   date: new_ Date, _
   mongo_object_id:
